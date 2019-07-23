@@ -1,4 +1,4 @@
-$(document).ready(function(){
+
 var TriviaQuestions = [
         {question: "1+1",
         answers: ["one","two","three"],
@@ -8,20 +8,32 @@ var TriviaQuestions = [
         answers: ["one answer","another answer"],
         correct:0,
         }]
+ var timer = 0
+ var correct=0
+ var incorrect=0
+ var showQuestion;
+ 
 
+$(document).ready(function(){
 
-
-
-
-
+$("#start").click();
 
 setTimeout(FirstQuestion, 1000)
 function FirstQuestion() {
-
         $("#box").text("ahoy");
-        console.log(TriviaQuestions[1])
 }
 })
+
+function StartGame(){
+
+
+
+}
+
+
+
+
+
 
 
 
