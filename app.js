@@ -17,6 +17,24 @@ var triviaQuestions = [
         answers: ["one answer", "another answer"],
         id: 2,
 
+    },
+    {
+        question: "third question",
+        answers: ["one answer", "another answer", "another one"],
+        id: 2,
+
+    },
+    {
+        question: "fourth question",
+        answers: ["one answer", "another answer", "another one"],
+        id: 2,
+
+    },
+    {
+        question: "fifth question",
+        answers: ["one answer", "another answer", "another one"],
+        id: 2,
+
     }
 ];
 
@@ -27,12 +45,13 @@ var correct = 0;
 var incorrect = 0;
 var IntervalId;
 var currentIndex = 0;
-
+//var timerRunning=false
 
 $(document).ready(function () {
 
-
     $("#start").click(startGame);
+
+
 
     //initializes game 
     function startGame() {
@@ -61,10 +80,12 @@ $(document).ready(function () {
             if (counter === 0) {
                 stop()
                 currentIndex++;
+                incorrect++;
+                $("#incorrect").text(incorrect)
                 ask()
-                
+
             }
-           
+
 
         }
 
@@ -80,32 +101,28 @@ $(document).ready(function () {
     //and loop the questions with a setInteval
     function ask() {
         $(".answer-buttons").hide()
-        
-        
-
-        
-
-
 
         counter = 5;
         if (triviaQuestions[currentIndex]) {
             var questionContent = (triviaQuestions[currentIndex].question)
             $("#questions").text(questionContent)
-            var answerContent = Object.values(triviaQuestions[currentIndex].answers)
 
+            var answerContent = Object.values(triviaQuestions[currentIndex].answers)
             $.each(answerContent, function (index, foo) {
                 $('#box').append($('<button class="answer-buttons">' + foo + '</button>'));
-
-
             })
-            
         }
         timer()
         console.log(counter);
 
+      
+
+
 
 
     }
+
+
 
 
 
