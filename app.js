@@ -33,7 +33,6 @@ $(document).ready(function () {
 
 
     $("#start").click(startGame);
-    $("#answer-buttons").click(nextQuestion)
 
     //initializes game 
     function startGame() {
@@ -44,6 +43,7 @@ $(document).ready(function () {
         currentIndex = 0;
         clearInterval(IntervalId)
         ask()
+        $('#start').hide();
     }
 
 
@@ -62,7 +62,9 @@ $(document).ready(function () {
                 stop()
                 currentIndex++;
                 ask()
+                
             }
+           
 
         }
 
@@ -77,27 +79,38 @@ $(document).ready(function () {
     //i need a for loop? to index the questions and answers
     //and loop the questions with a setInteval
     function ask() {
+        $(".answer-buttons").hide()
+        
+        
+
+        
+
+
 
         counter = 5;
         if (triviaQuestions[currentIndex]) {
             var questionContent = (triviaQuestions[currentIndex].question)
-            $("#questions").append(questionContent)
-
-
+            $("#questions").text(questionContent)
             var answerContent = Object.values(triviaQuestions[currentIndex].answers)
 
             $.each(answerContent, function (index, foo) {
                 $('#box').append($('<button class="answer-buttons">' + foo + '</button>'));
-            })
 
+
+            })
+            
         }
         timer()
         console.log(counter);
 
 
-    }
-})
 
+    }
+
+
+
+
+})
 
 
 
