@@ -1,9 +1,7 @@
 
 
 //ids for checking to see if an answer is correct && to to grab a string with a object array filter????
-
-
-
+//everything in one array? 
 
 var triviaQuestions = [
 
@@ -22,11 +20,11 @@ var triviaQuestions = [
         }]
 
 
-var counter = 10;
-
+var counter = 5;
+//current to display the next
 var correct = 0;
 var incorrect = 0;
-var showQuestion;
+var IntervalId;
 var current = 0;
 var argh = 0;
 
@@ -34,57 +32,80 @@ var argh = 0;
 
 $(document).ready(function () {
 
-
-        $("#start").click(startGame);
         
+        $("#start").click(startGame);
+        $("#answer-buttons").click(nextQuestion)
 
+//initializes game 
         function startGame() {
         counter = 10;
         correct = 0;
         incorrect = 0;
-        showQuestion;
+        IntervalId;
         current = 0;
         argh = 0;
-        clearInterval(showQuestion)
+        clearInterval(IntervalId)
         ask()
                   }
 })
 
 
-
+//timer that works 
 function timer() {
+        clearInterval(IntervalId);
+        IntervalId=setInterval(decrement,1000)
+     
+        
 
-        if (counter <= 0) {
+function decrement() {
+        counter--;
+        $('#timer').text(counter)
+        if (counter === 0) {
+                stop()
                 ask()
         }
-        counter--;
+        
+}
 
+function stop() {
+        clearInterval(IntervalId);
+
+}
 }
 
 
 
-
-
+//i need something to index the questions and answers
+//and loop the questions with a setInteval
 function ask() {
         
-        current++;
-        counter = 30;
-        $('#timer').text(counter)
+        counter = 5;
         if (triviaQuestions[current]) {
-                var questionContent = Object.values(triviaQuestions[0].question)
+                var questionContent = (triviaQuestions[0].question)
                 $("#questions").append(questionContent)
+                       
 
                 var answerContent = Object.values(triviaQuestions[0].answers)
-                $("#questions").append(answerContent)
+                
+                $.each(answerContent, function(index, foo){
+                        $('#box').append($('<button class="answer-buttons">'+foo+'</button>'));
+                      })
+                  
 
 
 
         }
-
-
         timer()
         console.log(counter);
+        
 
+}
+
+//maybe i dont need this??? 
+function nextQuestion (){
+        current++
+        timer()
+        ask()
 
 }
 
