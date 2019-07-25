@@ -37,7 +37,7 @@ var triviaQuestions = [
     }
 ];
 
-
+var unanswered=0
 var counter = 5;
 //current to display the next
 var correct = 0;
@@ -82,8 +82,6 @@ $(document).ready(function () {
             if (counter === 0) {
                 stop()
                 currentIndex++;
-                incorrect++;
-                $("#incorrect").text(incorrect)
                 ask()
 
             }
@@ -105,7 +103,6 @@ $(document).ready(function () {
     //Needs a new question on a button click .
     //click returns array length but
     function ask() {
-
         $("#answers").empty()
 
 
@@ -128,24 +125,25 @@ $(document).ready(function () {
 
     }
 
-    $(document).on("click",".answer-buttons", function () {
+    $(document).on("click", ".answer-buttons", function () {
         answerContent = ($(this).attr("data-index"))
         console.log(answerContent)
 
-       if( triviaQuestions[currentIndex] &&triviaQuestions.answerIndex === answerContent){
-        correct++;
-        $("#correct").text(correct)}
-        else if (triviaQuestions[currentIndex].answerIndex !== answerContent){
-            incorrect++;
-            $("#incorrect").text(incorrect)
+        if (answerContent == triviaQuestions[currentIndex].answerIndex) {
+            correct++;
+            $("#correct").text(correct)
+        }
+        else if  (triviaQuestions[currentIndex].answerIndex !== answerContent){
+        incorrect++;
+         $("#incorrect").text(incorrect)
         }
 
-  
 
 
 
 
-        
+
+
 
 
     });
