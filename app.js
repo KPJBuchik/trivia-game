@@ -126,16 +126,21 @@ $(document).ready(function () {
     }
 
     $(document).on("click", ".answer-buttons", function () {
+        
         answerContent = ($(this).attr("data-index"))
         console.log(answerContent)
 
         if (answerContent == triviaQuestions[currentIndex].answerIndex) {
             correct++;
             $("#correct").text(correct)
+            currentIndex++;
+            ask()
         }
         else if  (triviaQuestions[currentIndex].answerIndex !== answerContent){
         incorrect++;
          $("#incorrect").text(incorrect)
+            currentIndex++;
+            ask()
         }
 
 
