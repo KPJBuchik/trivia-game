@@ -4,11 +4,10 @@
 //everything in one array? 
 
 var triviaQuestions = [
-
+    
     {
         question: "1+1",
         answers: ["one", "two", "three"],
-        id: 1, //dont need id 
 
     },
 
@@ -53,10 +52,12 @@ var answerChoice = []
 $(document).ready(function () {
 
     $("#start").click(startGame);
+    console.log()
+
 
     //initializes game 
     function startGame() {
-        counter = 10;
+        counter = 5;
         correct = 0;
         incorrect = 0;
         IntervalId;
@@ -98,35 +99,41 @@ $(document).ready(function () {
 
 
 
-    //how do i apply new logic to a new question.  what is the proper syntax of indexOf here.  Needs a new question on a button click 
+    //how do i apply new logic to a new question. 
+    // what is the proper syntax of indexOf or length here?
+    //is the button doing something?
+    //Needs a new question on a button click .
+    //click returns array length but
     function ask() {
-        
-       
+
         $(".answer-buttons").hide()
-        
+
 
         counter = 5;
         if (triviaQuestions[currentIndex]) {
             var questionContent = (triviaQuestions[currentIndex].question)
             $("#questions").text(questionContent)
             var answerContent = Object.values(triviaQuestions[currentIndex].answers)
-            $.each(answerContent, function (answerIndex, foo) {
-                $('#box').append($('<button class="answer-buttons">' + foo + '</button>'));
+            $.each(answerContent, function (answerIndex, answerContent) {
+                $('#answers').append($('<button class="answer-buttons">' + answerContent + '</button>'));
                 $(".answer-buttons").click(function () {
+                    answerContent=($(this).index() )   
+                    console.log(answerContent)           
                     
-                    ($(answerIndex).index());
-                    console.log((answerIndex))
-                    if (answerIndex === 1) {
+
+                    
+                    if (triviaQuestions[currentIndex] && answerContent === 2) {
                         correct++;
-                        $("#correct").text(correct)}
-                    else if  (answerIndex ===2){
-                        incorrect++
-                        $("#incorrect").text(incorrect)
-                    
-                       
-                 
+                        $("#correct").text(correct)
                     }
-                   
+                    else if (triviaQuestions[currentIndex] && answerContent !== 2) {
+                        incorrect++;
+                        $("#incorrect").text(incorrect)
+
+
+
+                }
+
 
 
 
@@ -141,7 +148,7 @@ $(document).ready(function () {
 
 
     }
-    
+
 
     //answerbuttons===index
     //if user choice === correct index number 
