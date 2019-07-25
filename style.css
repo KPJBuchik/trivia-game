@@ -8,6 +8,30 @@
     
 }
 
+#start {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: teal;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    
+
+}
+
+#start:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px aquamarine;
+    transform: translateY(4px);
+}
+
+
 .answer-buttons {
     display: block;
     background-color: maroon;
@@ -26,4 +50,4 @@
 }
 
 
-body {background-color:teal}
+body {background-color:black}

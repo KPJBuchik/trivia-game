@@ -4,34 +4,34 @@
 //everything in one array? 
 
 var triviaQuestions = [
-    
+
     {
         question: "1+1",
         answers: ["one", "two", "three"],
-
+        answerIndex: 1
     },
 
     {
         question: "what is the greatest condiment",
         answers: ["mustard", "hot sauce", "ketchup",],
-
+        answerIndex: 0
 
     },
     {
         question: "2+2",
         answers: ["five", "four", "seven"],
-
+        answerIndex: 1
 
     },
     {
         question: "what cheese is found in spanokopita",
         answers: ["cheddar", "feta", "parmesan"],
-
+        answerIndex: 1
 
     },
     {
-        question: "fifth question",
-        answers: ["one answer", "another answer", "another one"],
+        question: "Game Over",
+
 
 
     }
@@ -106,7 +106,7 @@ $(document).ready(function () {
     //click returns array length but
     function ask() {
 
-        $(".answer-buttons").hide()
+        $("#answers").empty()
 
 
         counter = 5;
@@ -114,31 +114,10 @@ $(document).ready(function () {
             var questionContent = (triviaQuestions[currentIndex].question)
             $("#questions").text(questionContent)
             var answerContent = Object.values(triviaQuestions[currentIndex].answers)
-            $.each(answerContent, function (answerIndex, answerContent) {
-                $('#answers').append($('<button class="answer-buttons">' + answerContent + '</button>'));
-                $(".answer-buttons").click(function () {
-                    answerContent=($(this).index() )   
-                    console.log(answerContent)           
-                    
-
-                    
-                    if (triviaQuestions[currentIndex] && answerContent === 2) {
-                        correct++;
-                        $("#correct").text(correct)
-                    }
-                    else if (triviaQuestions[currentIndex] && answerContent !== 2) {
-                        incorrect++;
-                        $("#incorrect").text(incorrect)
-
-
-
-                }
-
-
-
-
-                });
-
+            $.each(answerContent, function (index, answerContent) {
+                $('#answers').append(
+                    $('<button class="answer-buttons">' + answerContent + '</button>').attr("data-index", index)
+                );
 
             })
 
@@ -148,6 +127,28 @@ $(document).ready(function () {
 
 
     }
+
+    $(document).on("click",".answer-buttons", function () {
+        answerContent = ($(this).attr("data-index"))
+        console.log(answerContent)
+
+       if( triviaQuestions[currentIndex] &&triviaQuestions.answerIndex === answerContent){
+        correct++;
+        $("#correct").text(correct)}
+        else if (triviaQuestions[currentIndex].answerIndex !== answerContent){
+            incorrect++;
+            $("#incorrect").text(incorrect)
+        }
+
+  
+
+
+
+
+        
+
+
+    });
 
 
     //answerbuttons===index
