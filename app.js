@@ -13,27 +13,27 @@ var triviaQuestions = [
     },
 
     {
-        question: "heres a question",
-        answers: ["one answer", "another answer"],
-        id: 2,
+        question: "what is the greatest condiment",
+        answers: ["mustard", "hot sauce", "ketchup",],
+
 
     },
     {
-        question: "third question",
-        answers: ["one answer", "another answer", "another one"],
-        id: 2,
+        question: "2+2",
+        answers: ["five", "four", "seven"],
+
 
     },
     {
-        question: "fourth question",
-        answers: ["one answer", "another answer", "another one"],
-        id: 2,
+        question: "what cheese is found in spanokopita",
+        answers: ["cheddar", "feta", "parmesan"],
+
 
     },
     {
         question: "fifth question",
         answers: ["one answer", "another answer", "another one"],
-        id: 2,
+
 
     }
 ];
@@ -45,13 +45,14 @@ var correct = 0;
 var incorrect = 0;
 var IntervalId;
 var currentIndex = 0;
+var answerChoice = []
 //var timerRunning=false
+
+
 
 $(document).ready(function () {
 
     $("#start").click(startGame);
-
-
 
     //initializes game 
     function startGame() {
@@ -97,30 +98,68 @@ $(document).ready(function () {
 
 
 
-    //i need a for loop? to index the questions and answers
-    //and loop the questions with a setInteval
+    //how do i apply new logic to a new question.  what is the proper syntax of indexOf here.  Needs a new question on a button click 
     function ask() {
+        
+       
         $(".answer-buttons").hide()
+        
 
         counter = 5;
         if (triviaQuestions[currentIndex]) {
             var questionContent = (triviaQuestions[currentIndex].question)
             $("#questions").text(questionContent)
-
             var answerContent = Object.values(triviaQuestions[currentIndex].answers)
-            $.each(answerContent, function (index, foo) {
+            $.each(answerContent, function (answerIndex, foo) {
                 $('#box').append($('<button class="answer-buttons">' + foo + '</button>'));
+                $(".answer-buttons").click(function () {
+                    
+                    ($(answerIndex).index());
+                    console.log((answerIndex))
+                    if (answerIndex === 1) {
+                        correct++;
+                        $("#correct").text(correct)}
+                    else if  (answerIndex ===2){
+                        incorrect++
+                        $("#incorrect").text(incorrect)
+                    
+                       
+                 
+                    }
+                   
+
+
+
+                });
+
+
             })
+
         }
         timer()
         console.log(counter);
 
-      
-
-
-
 
     }
+    
+
+    //answerbuttons===index
+    //if user choice === correct index number 
+    //correct++
+
+    //if user choice!== correct index number
+    //incorrect++
+
+
+    //$(this).index()????
+
+    //get index value of buttons????????
+    //  $("#answer-buttons").click(function(){
+    //    var answerIndex=$(triviaQuestions.answers).index()
+    //    answerChoice+answerIndex})
+    //    console.log(answerChoice)
+
+
 
 
 
@@ -145,25 +184,6 @@ $(document).ready(function () {
 
 
 
-/*
-TriviaQuestions.forEach(function(ask){
-        $("#start").click(ask);
-        var answer =$("<button>");
-        answer.text(ask.answer[1])
-        $("#questions").append(triviaQuestion);
-        var triviaQuestion = $("<p>")
-        answer.text(ask.question[1]);
-        answer.addclass("answer-button")
-        $("#questions").append(answer);
-
-})
-});
-
-
-
-//funciton startGame
-
-//function nextQuestion
 
 
 
