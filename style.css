@@ -9,24 +9,28 @@
 }
 
 #start {
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
+    background-color:teal;
+    border: none;
+    color: white;
+    padding: 16px 32px;
     text-align: center;
     text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: teal;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
     
 
 }
 
+#start:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+
 #start:active {
-    background-color: #3e8e41;
+    background-color: #6EA15E;
     box-shadow: 0 5px aquamarine;
     transform: translateY(4px);
 }
@@ -34,20 +38,29 @@
 
 .answer-buttons {
     display: block;
-    background-color: maroon;
+    background-color:#4CAF50;
     border: none;
-    color: white;
+    color: #915ea1;
     padding: 16px 32px;
     text-align: center;
+    text-decoration: none;
+    display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    opacity: 0.6;
-    transition: 0.3s;
-    text-decoration: none;
+    transition-duration: 0.4s;
     cursor: pointer;
-    margin:0 auto;
     width:100%;
+}
+.answer-buttons:hover {
+    background-color: #4CAF50;
+    color: white;
+
+
+
 }
 
 
-body {background-color:teal}
+body {background-color:#915ea1;
+        font-family:helvetica}
+
+

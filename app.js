@@ -1,8 +1,3 @@
-
-
-//ids for checking to see if an answer is correct && to to grab a string with a object array filter????
-//everything in one array? 
-
 var triviaQuestions = [
 
     {
@@ -30,16 +25,12 @@ var triviaQuestions = [
 
     },
     {
-        question: "Game Over",
-
-
-
+        question: "Game Over!",
     }
 ];
 
-var unanswered=0
-var counter = 5;
-//current to display the next
+var unanswered = 0
+var counter = 10;
 var correct = 0;
 var incorrect = 0;
 var IntervalId;
@@ -47,12 +38,10 @@ var currentIndex = 0;
 var answerChoice = []
 //var timerRunning=false
 
-
-
 $(document).ready(function () {
 
+
     $("#start").click(startGame);
-    console.log()
 
 
     //initializes game 
@@ -67,9 +56,6 @@ $(document).ready(function () {
         $('#start').hide();
     }
 
-
-
-    //timer that works 
     function timer() {
         clearInterval(IntervalId);
         IntervalId = setInterval(decrement, 1000)
@@ -83,30 +69,25 @@ $(document).ready(function () {
                 stop()
                 currentIndex++;
                 ask()
-
-            }
+                incorrect++
+            }  
+            if (currentIndex>4){
+            stop()}
+            
 
 
         }
 
         function stop() {
             clearInterval(IntervalId);
-
         }
     }
 
-
-
-    //how do i apply new logic to a new question. 
-    // what is the proper syntax of indexOf or length here?
-    //is the button doing something?
-    //Needs a new question on a button click .
-    //click returns array length but
     function ask() {
         $("#answers").empty()
 
 
-        counter = 5;
+        counter = 10;
         if (triviaQuestions[currentIndex]) {
             var questionContent = (triviaQuestions[currentIndex].question)
             $("#questions").text(questionContent)
@@ -121,12 +102,11 @@ $(document).ready(function () {
         }
         timer()
         console.log(counter);
-
-
     }
 
+
     $(document).on("click", ".answer-buttons", function () {
-        
+
         answerContent = ($(this).attr("data-index"))
         console.log(answerContent)
 
@@ -136,105 +116,14 @@ $(document).ready(function () {
             currentIndex++;
             ask()
         }
-        else if  (triviaQuestions[currentIndex].answerIndex !== answerContent){
-        incorrect++;
-         $("#incorrect").text(incorrect)
+        else if (triviaQuestions[currentIndex].answerIndex !== answerContent) {
+            incorrect++;
+            $("#incorrect").text(incorrect)
             currentIndex++;
             ask()
         }
 
-
-
-
-
-
-
-
+        
 
     });
-
-
-    //answerbuttons===index
-    //if user choice === correct index number 
-    //correct++
-
-    //if user choice!== correct index number
-    //incorrect++
-
-
-    //$(this).index()????
-
-    //get index value of buttons????????
-    //  $("#answer-buttons").click(function(){
-    //    var answerIndex=$(triviaQuestions.answers).index()
-    //    answerChoice+answerIndex})
-    //    console.log(answerChoice)
-
-
-
-
-
-
-
-
 })
-
-
-
-
-
-
-//populate the dom with questions 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-    function FirstQuestion() {
-        $("#box").append("<h2>FIRSTQUESTION!</h2>");
-        console.log("10 seconds left");
-
-
-
-    TriviaQuestions.forEach(function (populate) {
-
-        var newQuestions = $("<p>");
-        newQuestions.text(populate.question);
-        newQuestions.addClass("questions");
-        $("#box").append()
-
-
-
-
-})
-
-
-//reset function
-
-
-// for loop to generate the questions in ordeR???  method???  TriviaQuestions.forEach(function (populate) {
-
-
-
-
-
-//logic
-
-///
-
-
-*/
-
